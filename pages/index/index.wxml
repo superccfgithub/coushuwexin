@@ -1,10 +1,8 @@
 <!--index.wxml-->
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+  <input placeholder='0.00' class='border digitinput' type="digit" bindblur="changeSum" />
+  <view>要凑成的数字是{{sum}}</view>
+   <input bindinput="onInput" placeholder='0.00' class='border digitinput' type="digit"/>
+  <button bindtap="addNumber">add</button>
+  <view>用来凑数的数字有{{array}}</view>
 </view>

@@ -8,3 +8,13 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+.border{
+  background-color: azure
+}
+.flexH{
+  flex-direction: row
+}
+.digitinput{
+  width: 80%;
+  height: 10px
+}

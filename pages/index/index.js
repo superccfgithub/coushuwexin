@@ -3,8 +3,8 @@
 var app = getApp()
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {}
+    sum:0,
+    array:[],
   },
   //事件处理函数
   bindViewTap: function() {
@@ -12,15 +12,22 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
-    console.log('onLoad')
-    var that = this
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
-      //更新数据
-      that.setData({
-        userInfo:userInfo
-      })
+  //change sum
+  changeSum: function(e){
+    var value = e.detail.value
+    this.setData({sum:value})
+  },
+  //on input
+  onInput: function(e){
+    this.setData({
+     num:e.detail.value
+    })
+  },
+  //add number
+  addNumber: function(e){
+    this.data.array.push(this.data.num)
+    this.setData({
+      array:this.data.array
     })
   }
 })
