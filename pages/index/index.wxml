@@ -1,8 +1,14 @@
 <!--index.wxml-->
 <view class="container">
-  <input placeholder='0.00' class='border digitinput' type="digit" bindblur="changeSum" />
-  <view>要凑成的数字是{{sum}}</view>
-   <input bindinput="onInput" placeholder='0.00' class='border digitinput' type="digit"/>
-  <button bindtap="addNumber">add</button>
-  <view>用来凑数的数字有{{array}}</view>
+  <input placeholder='总和' value="{{sum}}" class='border digitinput' type="digit" bindblur="changeSum" bind/>
+  <view>要凑成的总和是:{{sum}}</view>
+  <input bindinput="onInput" value="{{num}}" placeholder='0.00' class='border digitinput' type="digit" />
+  <view class="flexH">
+    <button bindtap="addNumber" size="mini" style="margin:12px">Add</button>
+    <button bindtap="deleteNumber" size="mini" style="margin:12px">Delete</button>
+    <button bindtap="clearNumber" size="mini" style="margin:12px">Clear</button>
+  </view>
+  <view>用来凑数的数字有:{{array}}</view>
+  <button bindtap="coushu" size="default" style="margin:12px">Try</button>
+  <view wx:if="{{perfect.length>0}}">找到完美方案：{{perfect}}</view>
 </view>

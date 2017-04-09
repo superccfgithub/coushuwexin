@@ -5,14 +5,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
+  padding: 10px 0;
   box-sizing: border-box;
 } 
 .border{
   background-color: azure
 }
 .flexH{
-  flex-direction: row
+  display: flex;
+  flex-direction: row;
 }
 .digitinput{
   width: 80%;
