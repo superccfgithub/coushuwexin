@@ -3,6 +3,7 @@
 var coushu = []
 var total = 0
 var pp=[]
+var ppl=0
 var app = getApp()
 Page({
   data: {
@@ -86,7 +87,7 @@ function zuhe(n, m, a, re) {
   // System.out.println("从" + n + "个数中取" + m);
   var i;
   for (i = n - 1; i >= m - 1; i--) {
-    re.unshift(a[i]); /* m个数组合的最后一个数可以选择m ... n之间的任意一个 */
+    re[m - 1] = a[i];; /* m个数组合的最后一个数可以选择m ... n之间的任意一个 */
     if (m > 1) {
       zuhe(n - 1, m - 1, a, re);
       n--;
@@ -100,13 +101,14 @@ function zuhe(n, m, a, re) {
       console.log("sum="+sum)
       //				System.out.println("sum=" + sum);
       //				System.out.println("需要凑的额度=" + (total - sum));
-      if (total >= sum) {
+      if (total > sum) {
         coushu.push(total - sum);
       }
       if (total == sum) {
         console.log("找到一个完美方案：");
         console.log(re);
-        pp = re;
+        pp[ppl]=re;
+        ppl++;
       }
     }
   }

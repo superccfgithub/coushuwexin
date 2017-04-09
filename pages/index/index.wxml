@@ -11,4 +11,5 @@
   <view>用来凑数的数字有:{{array}}</view>
   <button bindtap="coushu" size="default" style="margin:12px">Try</button>
   <view wx:if="{{perfect.length>0}}">找到完美方案：{{perfect}}</view>
+  <view wx:for="{{perfect}}" wx:for-index="idx" wx:for-item="itemName">{{idx}}: {{itemName}}</view>
 </view>
