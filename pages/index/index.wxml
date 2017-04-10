@@ -2,7 +2,7 @@
 <view class="container">
   <input placeholder='总和' value="{{sum}}" class='border digitinput' type="digit" bindblur="changeSum" bind/>
   <view>要凑成的总和是:{{sum}}</view>
-  <input bindinput="onInput" value="{{num}}" placeholder='0.00' class='border digitinput' type="digit" />
+  <input bindinput="onInput" value="{{num}}" placeholder='0.00' class='border digitinput' type="digit" focus="{{addInputFocus}}"/>
   <view class="flexH">
     <button bindtap="addNumber" size="mini" style="margin:12px">Add</button>
     <button bindtap="deleteNumber" size="mini" style="margin:12px">Delete</button>
@@ -10,6 +10,7 @@
   </view>
   <view>用来凑数的数字有:{{array}}</view>
   <button bindtap="coushu" size="default" style="margin:12px">Try</button>
-  <view wx:if="{{perfect.length>0}}">找到完美方案：{{perfect}}</view>
-  <view wx:for="{{perfect}}" wx:for-index="idx" wx:for-item="itemName">{{idx}}: {{itemName}}</view>
+  <!--<view wx:if="{{perfect.length>0}}">找到完美方案：{{perfect}}</view>-->
+  <view class="perfect" wx:for="{{perfect}}" wx:for-index="idx" wx:for-item="itemName"><icon type="success" />>找到完美方案{{idx+1}}: {{itemName}}</view>
+  <view class="noPerfect" wx:if="{{tried==true && perfect.length==0}}"><icon type="warn" />没有完美方案，可以选择凑的数字有:{{cha}}</view>
 </view>

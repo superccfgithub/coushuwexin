@@ -19,3 +19,14 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.perfect{
+  color: green;
+  text-align: left;
+  margin: 10px
+}
+.noPerfect{
+  color: grey;
+  text-align: left;
+  margin: 10px;
+}

@@ -1,16 +1,17 @@
 //index.js
 //获取应用实例
-var coushu = []
+var cha = []
 var total = 0
 var pp=[]
-var ppl=0
 var app = getApp()
 Page({
   data: {
     sum: 0,
     array: [],
     num: 0,
-    perfect:[]
+    perfect:[],
+    tried:false,
+    addInputFocus: false
   },
   //事件处理函数
   bindViewTap: function() {
@@ -25,9 +26,9 @@ Page({
       value = 0;
     }
     this.setData({
-      sum: value
+      sum: parseFloat(value)
     })
-    total = value
+    total = parseFloat(value)
   },
   //on input
   onInput: function(e) {
@@ -36,7 +37,7 @@ Page({
     //   value = 0;
     // }
     this.setData({
-      num: e.detail.value
+      num: parseFloat(e.detail.value)
     })
   },
   //add number
@@ -48,7 +49,8 @@ Page({
     }
     this.data.array.push(this.data.num)
     this.setData({
-      array: this.data.array
+      array: this.data.array,
+      addInputFocus:true
     })
   },
   //delete last number
@@ -62,23 +64,34 @@ Page({
   },
   //clear number
   clearNumber: function(e) {
+    total=this.data.sum
+    pp=[]
+    cha=[]
     this.setData({
       array: [],
-      num: 0
+      num: 0,
+      perfect:[],
+      tried:false,
+      cha:[]
     })
   },
   //coushu
   coushu: function() {
+    total=this.data.sum
+    pp=[]
+    cha=[]
     var arr = this.data.array;
     var k = arr.length;
     for (var i = 1; i < k + 1; i++) {
-      var re = [];
+      var re = new Array();
       zuhe(k, i, arr, re);
     }
     console.log("total="+total)
-    console.log("coushu:"+coushu)
+    console.log("coushu:"+cha)
     this.setData({
-      perfect:pp
+      perfect:pp,
+      tried:true,
+      cha:cha
     })
   }
 })
@@ -102,13 +115,17 @@ function zuhe(n, m, a, re) {
       //				System.out.println("sum=" + sum);
       //				System.out.println("需要凑的额度=" + (total - sum));
       if (total > sum) {
-        coushu.push(total - sum);
+        cha.push(total - sum);
       }
       if (total == sum) {
         console.log("找到一个完美方案：");
-        console.log(re);
-        pp[ppl]=re;
-        ppl++;
+        console.log("re:"+re);
+        // pp[ppl]=re;
+
+        pp.push(re.slice(0))
+        // console.log("ppl="+ppl+" pp[ppl]="+pp[ppl]);
+        console.log("pp:"+pp);
+        // ppl++;
       }
     }
   }
