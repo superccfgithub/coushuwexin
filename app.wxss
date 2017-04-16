@@ -5,17 +5,46 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
+  /*padding: 10px 0;*/
   box-sizing: border-box;
 } 
 .border{
-  background-color: azure
+  margin: 5px;
 }
 .flexH{
   display: flex;
   flex-direction: row;
 }
 .digitinput{
-  width: 80%;
-  height: 20px
+  width: 85%;
+  height: 100%;
+  text-align: right;
+}
+.line{
+  border-bottom-color: lightgrey;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+.linewidth{
+  width: 100%
+}
+.lineheight{
+  height: 30px
+}
+.linealign{
+  justify-content: space-between;
+  align-items: center;
+}
+.hint{
+  color: grey;
+  margin: 5px;
+  font-weight: lighter;
+  text-align: left;
+  /*font-family: sans-serif;*/
+}
+.alignleft{
+  text-align: left;
+}
+.multilines{
+  word-break: break-all;
 }

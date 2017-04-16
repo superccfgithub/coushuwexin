@@ -1,16 +1,34 @@
 <!--index.wxml-->
 <view class="container">
-  <input placeholder='总和' value="{{sum}}" class='border digitinput' type="digit" bindblur="changeSum" bind/>
-  <view>要凑成的总和是:{{sum}}</view>
-  <input bindinput="onInput" value="{{num}}" placeholder='0.00' class='border digitinput' type="digit" focus="{{addInputFocus}}"/>
-  <view class="flexH">
-    <button bindtap="addNumber" size="mini" style="margin:12px">Add</button>
-    <button bindtap="deleteNumber" size="mini" style="margin:12px">Delete</button>
-    <button bindtap="clearNumber" size="mini" style="margin:12px">Clear</button>
+  
+  <!--<view class="flexH">-->
+  <!--<label>要凑成的总和是:</label>-->
+  
+  <!--</view>-->
+  <view class="line linewidth flexH linealign">
+  <label>总和:</label>
+  <input id="sum" placeholder='输入要凑成的总和' value="{{sum}}" class='border digitinput' type="digit" bindblur="changeSum" bind/>
   </view>
-  <view>用来凑数的数字有:{{array}}</view>
-  <button bindtap="coushu" size="default" style="margin:12px">Try</button>
-  <!--<view wx:if="{{perfect.length>0}}">找到完美方案：{{perfect}}</view>-->
-  <view class="perfect" wx:for="{{perfect}}" wx:for-index="idx" wx:for-item="itemName"><icon type="success" />>找到完美方案{{idx+1}}: {{itemName}}</view>
-  <view class="noPerfect" wx:if="{{tried==true && perfect.length==0}}"><icon type="warn" />没有完美方案，可以选择凑的数字有:{{cha}}</view>
+  <view class="line linewidth flexH linealign">
+  <label >单项:</label>
+  <input id="num" placeholder='输入凑数的数字' bindinput="onInput" value="{{num}}" class='border digitinput' type="digit" focus="{{addInputFocus}}"/>
+   </view>
+  <view class="flexH">
+    <button id="addNumber" disabled="{{num==null}}" bindtap="addNumber" size="mini" style="margin:12px">＋</button>
+    <button id="deleteNumber" disabled="{{array==null||array.length==0}}" bindtap="deleteNumber" size="mini" style="margin:12px">－</button>
+    <button id="clearNumber" bindtap="clearNumber" size="mini" style="margin:12px">重置</button>
+  </view>
+  <view wx:if="{{sum!=null}}" class="multilines">凑数的数组:[{{array}}]</view>
+  <button id="coushu" disabled="{{sum==null||sum<=0||array==null||array.length==0}}" bindtap="coushu" size="default" style="margin:12px">试一试</button>
+  
+  <view class="perfect multilines" wx:for="{{perfect}}" wx:for-index="idx" wx:for-item="itemName">方案{{idx+1}}: {{itemName}}</view>
+  <view class="noPerfect multilines" wx:if="{{tried==true && perfect.length==0}}">没有完美方案，可以选择凑的数字有:{{cha}}</view>
+  <view wx:if="{{!tried}}" class="alignleft">
+  <view class="hint"><icon type="info" color="grey" /> 本程序可以根据输入的数求解能否够找到一组数的和恰好等于要凑的数，找到则把所有完美解展示出来，否则展示需要哪些值可以实现。
+  </view>
+  <view class="hint">1. 输入要求的总和:10</view>
+  <view class="hint">2. 输入单项数字后，点击“+”，添加到待解数组:[1,2,3,4,11]</view>
+  <view class="hint">3. 点击“试一试”。可以得到一组解：1,2,3,4</view>
+  <view class="hint">4. 如果输错了数字，可以点击“-”，移除最后一个，或点击“重置”清空总和和所有单项</view>
+  </view>
 </view>

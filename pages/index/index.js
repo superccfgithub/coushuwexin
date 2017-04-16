@@ -6,9 +6,9 @@ var pp=[]
 var app = getApp()
 Page({
   data: {
-    sum: 0,
+    sum: null,
     array: [],
-    num: 0,
+    num: null,
     perfect:[],
     tried:false,
     addInputFocus: false
@@ -22,13 +22,23 @@ Page({
   //change sum
   changeSum: function(e) {
     var value = e.detail.value
-    if (value == "") {
-      value = 0;
-    }
-    this.setData({
+    // if (value == "") {
+    //   value = 0;
+    // }
+    if(value){
+this.setData({
       sum: parseFloat(value)
     })
     total = parseFloat(value)
+    }
+    
+  },
+  onBlur:function(e){
+    if(e.target.id=="sum"){
+    this.setData({
+      num:null
+    })
+    }
   },
   //on input
   onInput: function(e) {
@@ -42,15 +52,16 @@ Page({
   },
   //add number
   addNumber: function(e) {
-    if (this.data.num == null || this.data.num == "") {
-      this.setData({
-        num: 0
-      })
-    }
+    // if (this.data.num == null || this.data.num == "") {
+    //   this.setData({
+    //     num: 0
+    //   })
+    // }
     this.data.array.push(this.data.num)
     this.setData({
       array: this.data.array,
-      addInputFocus:true
+      addInputFocus:true,
+      num:null
     })
   },
   //delete last number
@@ -64,12 +75,13 @@ Page({
   },
   //clear number
   clearNumber: function(e) {
-    total=this.data.sum
+    total=null
     pp=[]
     cha=[]
     this.setData({
       array: [],
-      num: 0,
+      sum: null,
+      num: null,
       perfect:[],
       tried:false,
       cha:[]
