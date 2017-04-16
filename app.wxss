@@ -17,7 +17,7 @@
 }
 .digitinput{
   width: 85%;
-  height: 100%;
+  /*height: 100%;*/
   text-align: right;
 }
 .line{
@@ -29,16 +29,16 @@
   width: 100%
 }
 .lineheight{
-  height: 30px
+  height: 60px
 }
 .linealign{
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 .hint{
   color: grey;
   margin: 5px;
-  font-weight: lighter;
+  /*font-weight: lighter;*/
   text-align: left;
   /*font-family: sans-serif;*/
 }

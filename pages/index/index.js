@@ -2,15 +2,15 @@
 //获取应用实例
 var cha = []
 var total = 0
-var pp=[]
+var pp = []
 var app = getApp()
 Page({
   data: {
     sum: null,
     array: [],
     num: null,
-    perfect:[],
-    tried:false,
+    perfect: [],
+    tried: false,
     addInputFocus: false
   },
   //事件处理函数
@@ -22,32 +22,39 @@ Page({
   //change sum
   changeSum: function(e) {
     var value = e.detail.value
-    // if (value == "") {
-    //   value = 0;
-    // }
-    if(value){
-this.setData({
-      sum: parseFloat(value)
-    })
-    total = parseFloat(value)
+      // if (value == "") {
+      //   value = 0;
+      // }
+    if (value) {
+      this.setData({
+        sum: value
+      })
+      total = parseFloat(value)
     }
-    
+
   },
-  onBlur:function(e){
-    if(e.target.id=="sum"){
-    this.setData({
-      num:null
-    })
+  onBlur: function(e) {
+    var value = e.detail.value
+    if(value!=null){
+
     }
+    // if (e.target.id == "sum") {
+    //   this.setData({
+    //     num: null
+    //   })
+    // }
   },
   //on input
   onInput: function(e) {
-    // var value = e.detail.value
+    var value = e.detail.value
     // if(value==""){
     //   value = 0;
     // }
+    if(value==""){
+      value=null
+    }
     this.setData({
-      num: parseFloat(e.detail.value)
+      num: value
     })
   },
   //add number
@@ -57,11 +64,22 @@ this.setData({
     //     num: 0
     //   })
     // }
-    this.data.array.push(this.data.num)
+    // if (this.data.mum == null) {
+    //   return
+    // }
+    if (this.data.array.length >= 15) {
+      wx.showToast({
+        title: '不能超过15个数',
+        icon: 'warn',
+        duration: 1000
+      })
+    } else {
+      this.data.array.push(parseFloat(this.data.num))
+    }
     this.setData({
       array: this.data.array,
-      addInputFocus:true,
-      num:null
+      addInputFocus: true,
+      num: null
     })
   },
   //delete last number
@@ -69,41 +87,55 @@ this.setData({
     if (this.data.array.length > 0) {
       this.data.array.pop()
       this.setData({
-        array: this.data.array
+        array: this.data.array,
+        num: null
       })
     }
   },
   //clear number
   clearNumber: function(e) {
-    total=null
-    pp=[]
-    cha=[]
+    total = null
+    pp = []
+    cha = []
     this.setData({
       array: [],
       sum: null,
       num: null,
-      perfect:[],
-      tried:false,
-      cha:[]
+      perfect: [],
+      tried: false,
+      cha: []
     })
   },
   //coushu
   coushu: function() {
-    total=this.data.sum
-    pp=[]
-    cha=[]
+    // wx.showLoading({
+    //   title: '计算中...',
+    //   mask: true
+    // })
+    total = parseFloat(this.data.sum)
+    pp = []
+    cha = []
     var arr = this.data.array;
     var k = arr.length;
     for (var i = 1; i < k + 1; i++) {
       var re = new Array();
       zuhe(k, i, arr, re);
     }
-    console.log("total="+total)
-    console.log("coushu:"+cha)
+    console.log("total=" + total)
+    console.log("coushu:" + cha)
     this.setData({
-      perfect:pp,
-      tried:true,
-      cha:cha
+      perfect: pp,
+      tried: true,
+      cha: cha
+    })
+    resetInput()
+    // wx.hideLoading()
+  },
+  resetInput:function(){
+this.setData({
+      array: [],
+      sum: null,
+      num: num
     })
   }
 })
@@ -120,23 +152,23 @@ function zuhe(n, m, a, re) {
     else {
       var sum = 0;
       for (var j = 0; j < re.length; j++) {
-        console.log("re:"+re);
+        console.log("re:" + re);
         sum = parseFloat(sum) + parseFloat(re[j]);
       }
-      console.log("sum="+sum)
-      //				System.out.println("sum=" + sum);
-      //				System.out.println("需要凑的额度=" + (total - sum));
+      console.log("sum=" + sum)
+        //				System.out.println("sum=" + sum);
+        //				System.out.println("需要凑的额度=" + (total - sum));
       if (total > sum) {
         cha.push(total - sum);
       }
       if (total == sum) {
         console.log("找到一个完美方案：");
-        console.log("re:"+re);
+        console.log("re:" + re);
         // pp[ppl]=re;
 
         pp.push(re.slice(0))
-        // console.log("ppl="+ppl+" pp[ppl]="+pp[ppl]);
-        console.log("pp:"+pp);
+          // console.log("ppl="+ppl+" pp[ppl]="+pp[ppl]);
+        console.log("pp:" + pp);
         // ppl++;
       }
     }
