@@ -78,18 +78,10 @@ Page({
     if (value != null) {
 
     }
-    // if (e.target.id == "sum") {
-    //   this.setData({
-    //     num: null
-    //   })
-    // }
   },
   //on input
   onInput: function (e) {
     var value = e.detail.value
-    // if(value==""){
-    //   value = 0;
-    // }
     if (value == "") {
       value = null
     }
@@ -99,14 +91,6 @@ Page({
   },
   //add number
   addNumber: function (e) {
-    // if (this.data.num == null || this.data.num == "") {
-    //   this.setData({
-    //     num: 0
-    //   })
-    // }
-    // if (this.data.mum == null) {
-    //   return
-    // }
     if (this.data.array.length >= 15) {
       wx.showToast({
         title: '不能超过15个数',
@@ -146,12 +130,16 @@ Page({
       cha: []
     })
   },
+  //清空输入
+  resetInput: function () {
+    this.setData({
+      array: [],
+      sum: null,
+      num: this.data.num
+    })
+  },
   //coushu
   coushu: function () {
-    // wx.showLoading({
-    //   title: '计算中...',
-    //   mask: true
-    // })
     total = parseFloat(this.data.sum)
     pp = []
     cha = []
@@ -168,16 +156,10 @@ Page({
       tried: true,
       cha: cha
     })
-    resetInput()
-    // wx.hideLoading()
+    this.resetInput()
   },
-  resetInput: function () {
-    this.setData({
-      array: [],
-      sum: null,
-      num: num
-    })
-  },
+
+
   /**
      * 点击「请求」按钮，测试带会话请求的功能
      */
