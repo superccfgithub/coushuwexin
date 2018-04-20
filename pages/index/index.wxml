@@ -32,11 +32,11 @@
   <view class="hint">3. 点击“试一试”。可以得到一组解：1,2,3,4</view>
   <view class="hint">4. 如果输错了数字，可以点击“-”，移除最后一个，或点击“重置”清空总和和所有单项</view>
   </view>
-  <view class="line">
+  <!-- <view class="line">
         <text>带会话请求测试</text>
         <input type="text" value="{{requestUrl}}" disabled class="hide"></input>
         <view class="line-control">
             <view bindtap="doRequest" class="item" ><view class="item-inner">请求</view></view>
         </view>
-    </view>
+    </view> -->
 </view>
